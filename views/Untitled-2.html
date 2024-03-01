@@ -1,0 +1,49 @@
+ <div class="skills">
+  <ul>
+    <% books.forEach(book => { %>
+      <div class ="skill-row">
+      <li>
+        <div class="item-flex-container item-border">
+  
+          <div class="item-flex-container-column">
+            <div>
+              <img class="chilli_img"src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" alt="Book Cover" />
+              </div>
+
+              <h3><%= book.title %></h3>
+            
+            <div class="item-flex-container">
+              <strong>ISBN:</strong> <%= book.isbn %>
+            </div>
+            <strong>DESCRIPTION:</strong><%= book.description %> 
+            <div id="description<%=book.id%>" class="item-flex-container">
+            <strong>RATING:</strong> <%= parseInt(book.rating) %> / 10<br>
+            <strong>READ_DATE:</strong> <%= book.date.toLocaleDateString() %>  <br>
+            </div>
+            
+            <div class="item-flex-container">
+              
+              <div class="small-screen-delete-edit-buttons">
+                <form action="/edit" method="POST">
+                  <input type="hidden" name="updated_book_id" value="<%= book.id %>">
+                  <input id="input<%= book.id %>" type="text" name="updated_item_description" value="<%= book.description %>" autofocus="true" hidden="true"/>
+                  <button class="confirm-btn" id="done<%=book.id%>" type="submit" hidden>CONFIRM</button>
+                </form>
+              
+                <form action ="/delete" method="POST">
+                  <button class="delete-btn" id="delete<%=book.id%>" type="submit" name="book_id" value="<%=book.id %>">DELETE</button>
+                </form>
+                
+                <button class="edit-btn" id="edit<%=book.id%>" onclick="handler('<%=book.id%>')">EDIT</button>
+              </div>
+              
+            </div>
+          </div>
+        
+        </div>
+      </li>
+    </div>
+    <% }) %>
+  </ul>
+</div>
+</div> -->

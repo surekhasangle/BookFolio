@@ -1,0 +1,114 @@
+<%- include("partials/header.ejs") %>
+
+<div class = "middle">
+    <div class="profile">
+      <h2>Books I've read <img src="img/book.png" alt="book_photo" width="50" height="50"></h2>
+      <p>Tiny summary but detailed notes for each. Use the ISBN number to find it from your local library or anywhere else. This page will constantly update as I read more, so bookmark it if you want to check back in a few months.
+        Sorted with my top recommendations up top. Sort by title, newest, or best.
+        And please read <a href="faq">this FAQ page </a> about these notes, if you have any questions. 
+        You can also <a href="contact"> email me.</a></p>  
+    </div>
+    <br>
+    <div class="container">
+      <form action="/sort" method="post">
+        <div class="sortBy">
+            <label for="sort">SORT BY:</label>
+          <select name="sort">
+            <option value="id">Recency</option>
+            <option value="rating">Rating</option>
+            </select>
+            <button class="btn" type="submit">Sort</button>
+        </div>
+      </form>
+    </div>
+
+
+    <div class="skills">
+      <ul>
+        <% books.forEach(book => { %>
+          <div class ="skill-row"> 
+            <li>
+              <div>
+              <img class="chilli_img"src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" alt="Book Cover" />
+              </div>
+
+              <h3><%= book.title %></h3>
+              
+              <b class="title_sub">Date read:<%= book.date.toLocaleDateString() %> 
+                                   How strongly I recommend it:<%= parseInt(book.rating) %>
+                                   ISBN:<%= book.isbn %> </b> 
+              <p><%= book.description %> </p>
+              <div id="description<%=book.id%>" class="item-flex-container"></div>
+
+              <div class="item-flex-container">
+              
+                <div class="small-screen-delete-edit-buttons">
+              <form action="/edit" method="POST">
+                <input type="hidden" name="updated_book_id" value="<%= book.id %>">
+                <input id="input<%= book.id %>" type="text" name="updated_item_description" value="<%= book.description %>" autofocus="true" hidden="true"/>
+                <button class="edit-btn confirm-btn" id="done<%=book.id%>" type="submit" hidden>CONFIRM</button>
+              </form>
+            
+              
+              <form action ="/delete" method="POST">
+                <button class="delete-btn" id="delete<%=book.id%>" type="submit" name="book_id" value="<%=book.id %>">DELETE</button>
+              </form>
+              
+              <button class="edit-btn" id="edit<%=book.id%>" onclick="handler('<%=book.id%>')">EDIT</button>
+            </div>
+            </div>
+              
+            </li>
+          </div>
+          <% }) %>
+      </ul>
+    </div>
+
+    <hr>
+</div>
+ 
+
+  <div class="container">
+    <div class="submit-form" >
+      <h3>ADD A NEW BOOK</h3>
+      <form action="/add" method="POST" class="flex-container-column" style="margin-top:30px">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <textarea class="form-control" rows="1" name="title" value="" placeholder="Hunger Games" autocomplete="off"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea class="form-control" rows="5" name="description" value="" placeholder="However you want to describe the book" autocomplete="off"></textarea>
+        </div>
+        <div class="form-check form-check-inline">
+          <label for="isbn" class="form-label">ISBN</label>
+          <input type="text" class="form-control" rows="1" name="isbn" value="" placeholder="0439023483" autocomplete="off" />
+        </div>
+        <div class="form-check form-check-inline">
+          <label for="rating" class="form-label">Rating</label>
+          <input type="text" class="form-control" rows="1" name="rating" value="" placeholder="0..10" autocomplete="off"/>
+        </div>
+        <div class="form-check form-check-inline">
+          <label for="date" class="form-label">Read_Date</label>
+          <input type="text" class="form-control" rows="1" name="date" value="" placeholder="01/01/2020" autocomplete="off"/>
+        </div>
+        <div class="col-auto p-2">
+          <button type="submit" class="btn">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+<script>        
+  function handler(id) {
+  document.getElementById("description" + id).setAttribute("hidden", true);
+  document.getElementById("edit" + id).setAttribute("hidden", true);
+  document.getElementById("delete" + id).setAttribute("hidden", true);
+  document.getElementById("done" + id).removeAttribute("hidden");
+  document.getElementById("input" + id).removeAttribute("hidden");
+  }
+</script>
+
+<%- include("partials/footer.ejs") %>
