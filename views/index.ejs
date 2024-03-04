@@ -74,23 +74,40 @@
       <form action="/add" method="POST" class="flex-container-column" style="margin-top:30px">
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
-          <textarea class="form-control" rows="1" name="title" value="" placeholder="Hunger Games" autocomplete="off"></textarea>
+          <textarea class="form-control" rows="1" name="title" value="" placeholder="Hunger Games" autocomplete="off" required></textarea>
         </div>
         <div class="mb-3">
           <label for="description" class="form-label">Description</label>
-          <textarea class="form-control" rows="5" name="description" value="" placeholder="However you want to describe the book" autocomplete="off"></textarea>
+          <textarea class="form-control" rows="5" name="description" value="" placeholder="However you want to describe the book" autocomplete="off" required></textarea>
         </div>
         <div class="form-check form-check-inline">
           <label for="isbn" class="form-label">ISBN</label>
-          <input type="text" class="form-control" rows="1" name="isbn" value="" placeholder="0439023483" autocomplete="off" />
+          <input type="text" class="form-control" rows="1" name="isbn" value="" placeholder="0439023483" autocomplete="off" required />
         </div>
+        <!-- <div class="form-check form-check-inline">
+          <label for="rating" class="form-label">Rating</label>
+          <input type="text" class="form-control" rows="1" name="rating" value="" placeholder="0..10" autocomplete="off" required/>
+        </div> -->
         <div class="form-check form-check-inline">
           <label for="rating" class="form-label">Rating</label>
-          <input type="text" class="form-control" rows="1" name="rating" value="" placeholder="0..10" autocomplete="off"/>
+          <select name="rating">
+                <option value="">select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+          </select>
         </div>
+       
         <div class="form-check form-check-inline">
           <label for="date" class="form-label">Read_Date</label>
-          <input type="text" class="form-control" rows="1" name="date" value="" placeholder="01/01/2020" autocomplete="off"/>
+          <input type="date" class="form-control" rows="1" name="date" value="" placeholder="01/01/2020" autocomplete="off" required/>
         </div>
         <div class="col-auto p-2">
           <button type="submit" class="btn">Submit</button>

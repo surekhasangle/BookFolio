@@ -1,7 +1,38 @@
 <%- include("partials/header.ejs") %>
+<h2>CONTACT</h2>
+<br>
+<h3>First, who are you?</h3>
 
 <div class="container">
-   
+    <div class="contact-me">
+           <form action="mailto:surekhasangle06@gmail.com" method="post" enctype="text/plain" class="flex-container-column" style="margin-top:30px">
+ 
+            <div class=class="form-check form-check-inline">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" rows="1" name="name" value="" autocomplete="off" required />
+            </div>
+            <div class=class="form-check form-check-inline">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" rows="1" name="email" value="" autocomplete="off" />
+            </div>
+            <br>
+            <h3>Whatever you want to say</h3>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" rows="5" name="description" value="" placeholder="" autocomplete="off"></textarea>
+              </div>
+            <div class="col-auto p-2">
+            <input type="submit" value="Send" class="btn">
+            </div>
+        </form>
+
+        
+              
+        
+
+    </div>
 </div>
 </div>
+
+
 <%- include("partials/footer.ejs") %>
