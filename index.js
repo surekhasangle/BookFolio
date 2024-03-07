@@ -115,6 +115,10 @@ app.get("/me", async (req, res) => {
   res.render("index1.ejs");
 });
 
+app.get("/travel", async (req, res) => {
+  res.render("travel.ejs");
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
